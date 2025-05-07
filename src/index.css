@@ -7,8 +7,6 @@
 
 :root {
   font-family: "Inter", sans-serif;
-  --base-font-size: 16px;
-  --scale-factor: 1;
 }
 
 * {
@@ -18,7 +16,6 @@
 }
 
 html {
-  font-size: var(--base-font-size);
   width: 100%;
   height: 100%;
   background: linear-gradient(to bottom, #000000, #4C1D95, #000000);
@@ -36,37 +33,6 @@ body {
   min-height: 100vh;
   width: 100%;
   overflow-x: hidden;
-}
-
-/* Responsive scaling */
-@media screen and (min-width: 1440px) {
-  :root {
-    --scale-factor: 1.2;
-  }
-}
-
-@media screen and (max-width: 1024px) {
-  :root {
-    --scale-factor: 0.9;
-  }
-}
-
-@media screen and (max-width: 768px) {
-  :root {
-    --scale-factor: 0.8;
-  }
-}
-
-@media screen and (max-width: 480px) {
-  :root {
-    --scale-factor: 0.7;
-  }
-}
-
-/* Apply scaling to all elements */
-* {
-  transform: scale(var(--scale-factor));
-  transform-origin: top left;
 }
 
 @keyframes gradient-text-animation {
