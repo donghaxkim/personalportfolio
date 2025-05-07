@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { useState, useRef } from "react";
 import emailjs from "emailjs-com";
+import { TypeAnimation } from 'react-type-animation';
 
 const SERVICE_ID = "service_nxfttql";
 const TEMPLATE_ID = "template_85qmnvt";
@@ -73,7 +74,22 @@ const Hero = ({ theme }) => {
                 type="button"
                 onClick={() => setShowMessageBox((prev) => !prev)}
               >
-                Let's chat!
+                <TypeAnimation
+                  sequence={[
+                    'Let\'s chat!',
+                    2000,
+                    '',
+                    1000,
+                    'Let\'s chat!',
+                    2000,
+                    '',
+                    1000,
+                  ]}
+                  wrapper="span"
+                  speed={50}
+                  repeat={Infinity}
+                  cursor={true}
+                />
               </motion.button>
             </div>
             {showMessageBox && (
@@ -153,4 +169,3 @@ const Hero = ({ theme }) => {
 };
 
 export default Hero;
-
