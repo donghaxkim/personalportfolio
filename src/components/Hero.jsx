@@ -76,12 +76,14 @@ const Hero = ({ theme }) => {
               >
                 <TypeAnimation
                   sequence={[
+                    '',
+                    3000,
                     'Let\'s chat!',
-                    2000,
+                    5000,
                     '',
                     1000,
                     'Let\'s chat!',
-                    2000,
+                    5000,
                     '',
                     1000,
                   ]}
@@ -89,6 +91,7 @@ const Hero = ({ theme }) => {
                   speed={50}
                   repeat={Infinity}
                   cursor={true}
+                  preRenderFirstString={true}
                 />
               </motion.button>
             </div>
@@ -169,3 +172,4 @@ const Hero = ({ theme }) => {
 };
 
 export default Hero;
+
