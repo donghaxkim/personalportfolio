@@ -114,7 +114,7 @@ const Navbar = ({ theme, toggleTheme }) => {
               className={`cursor-pointer w-[60px] h-[60px] flex items-center justify-center ${iconHover}`}
               onClick={toggleTheme}
             >
-              {theme === 'dark' ? <WiMoonAltThirdQuarter /> : <WiDaySunny />}
+              {theme === 'dark' ? <WiDaySunny /> : <WiMoonAltThirdQuarter />}
             </div>
           </div>
         </div>
