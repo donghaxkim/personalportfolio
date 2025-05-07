@@ -77,15 +77,15 @@ const Hero = ({ theme }) => {
                 <TypeAnimation
                   sequence={[
                     '',
-                    3000,
-                    'Let\'s chat!',
-                    5000,
-                    '',
                     1000,
                     'Let\'s chat!',
                     5000,
                     '',
-                    1000,
+                    2000,
+                    'Let\'s chat!',
+                    5000,
+                    '',
+                    2000,
                   ]}
                   wrapper="span"
                   speed={50}
