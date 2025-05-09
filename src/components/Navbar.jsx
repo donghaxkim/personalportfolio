@@ -102,18 +102,18 @@ const Navbar = ({ theme, toggleTheme }) => {
 
   return (
     <>
-      {/* HOTSPOT AREA */}
+
       <div
         className="fixed top-4 left-0 w-full z-40"
         style={{
           height: `${NAVBAR_HEIGHT}px`,
-          pointerEvents: showNavbar ? 'none' : 'auto', // Don't block navbar when visible
+          pointerEvents: showNavbar ? 'none' : 'auto',
         }}
         onMouseEnter={handleHotspotEnter}
         onMouseLeave={handleHotspotLeave}
       />
 
-      {/* TOP NAVBAR */}
+
       <nav
         className={`fixed top-4 left-0 w-full z-50 transition-opacity duration-500 ${
           showNavbar ? 'opacity-100' : 'opacity-0 pointer-events-none'
@@ -167,7 +167,7 @@ const Navbar = ({ theme, toggleTheme }) => {
         </div>
       </nav>
 
-      {/* SIDE NAVBAR */}
+
       <nav className="fixed top-[40%] transform -translate-y-1 right-3 z-50">
         <div className="container mx-auto">
           <div className={`${sideNavBg} w-[40px] py-4 backdrop-blur-xl rounded-full flex flex-col items-center justify-center space-y-6 z-50`}>
