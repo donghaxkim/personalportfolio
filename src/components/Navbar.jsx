@@ -5,12 +5,11 @@ import { Link } from 'react-scroll';
 import { useState, useEffect, useRef } from 'react';
 
 const Navbar = ({ theme, toggleTheme }) => {
-  const [showNavbar, setShowNavbar] = useState(true); // Always show at top
+  const [showNavbar, setShowNavbar] = useState(true);
   const [isAtTop, setIsAtTop] = useState(true);
   const [isHovered, setIsHovered] = useState(false);
   const hideTimeout = useRef(null);
 
-  // Track scroll position to determine if at top
   useEffect(() => {
     const handleScroll = () => {
       const atTop = window.scrollY < 10;
@@ -21,7 +20,7 @@ const Navbar = ({ theme, toggleTheme }) => {
         if (hideTimeout.current) clearTimeout(hideTimeout.current);
         hideTimeout.current = setTimeout(() => {
           if (!isHovered) setShowNavbar(false);
-        }, 2000);
+        }, 5000);
       } else {
         setShowNavbar(true);
         if (hideTimeout.current) clearTimeout(hideTimeout.current);
