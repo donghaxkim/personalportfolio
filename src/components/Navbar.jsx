@@ -39,7 +39,6 @@ const Navbar = ({ theme, toggleTheme }) => {
     };
   }, [isHovered, isHotspotHovered]);
 
-  // Set active section on scroll (for side navbar)
   useEffect(() => {
     const handleSectionScroll = () => {
       const sections = ['home', 'about', 'techstack', 'projects', 'contact', 'resume', 'contact-info'];
