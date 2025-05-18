@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 const Projects = () => {
   return (
-    <section className="section pt-20" id="projects">
+    <section className="section pt-10" id="projects">
         <motion.h2
           whileInView={{ opacity: 1, y: 0 }}
           initial={{ opacity: 0, y: -100 }}

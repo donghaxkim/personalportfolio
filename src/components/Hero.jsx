@@ -25,19 +25,19 @@ const Hero = ({ theme }) => {
       });
   };
 
-  // Set chat box and input colors based on theme
+  
   const chatBoxBg = theme === 'dark' ? 'bg-gray-500/30' : 'bg-gray-700/80';
   const inputText = theme === 'dark' ? 'text-gray-700' : 'text-gray-200';
   const inputPlaceholder = theme === 'dark' ? 'placeholder-gray-700' : 'placeholder-gray-200';
 
   return (
-    <div className="section border-b border-neutral-900 pb-40 lg:mb-48" id="home">
+    <div className="section border-b border-neutral-900 h-screen pb-20" id="home">
       <div className="flex flex-wrap">
-        <div className="w-full lg:w-1/2 flex flex-col items-center lg:items-start mt-[100px]">
+        <div className="w-full lg:w-1/2 ml-44 flex flex-col items-center lg:items-start mt-[100px]">
           <motion.h1
             initial={{ x: -400, opacity: 0 }}
             animate={{ x: 0, opacity: 1, transition: { duration: 0.5 } }}
-            className="pb-16 text-6xl font-medium tracking-tight lg:mt-16 lg:text-9xl"
+            className="pb-16 text-6xl font-medium tracking-tight lg:mt-[300px] lg:text-9xl"
             style={{
               background: "linear-gradient(to right, #f472b6, #64748b, #7c3aed)",
               backgroundSize: "200% auto",
@@ -172,4 +172,3 @@ const Hero = ({ theme }) => {
 };
 
 export default Hero;
-
