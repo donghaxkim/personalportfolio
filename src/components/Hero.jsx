@@ -33,7 +33,7 @@ const Hero = ({ theme }) => {
   return (
     <div className="section border-b border-neutral-900 h-screen pb-20" id="home">
       <div className="flex flex-wrap">
-        <div className="w-full lg:w-1/2 ml-44 flex flex-col items-center lg:items-start mt-[70px]">
+        <div className="w-full lg:w-1/2 ml-44 flex flex-col items-center lg:items-start mt-[50px]">
           <motion.h1
             initial={{ x: -400, opacity: 0 }}
             animate={{ x: 0, opacity: 1, transition: { duration: 0.5 } }}
