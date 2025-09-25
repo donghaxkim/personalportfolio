@@ -2,43 +2,40 @@ import { BiHomeAlt } from 'react-icons/bi';
 import { FaLinkedin, FaGithub, FaFileAlt } from 'react-icons/fa';
 import { WiMoonAltThirdQuarter, WiDaySunny } from 'react-icons/wi';
 import { Link } from 'react-scroll';
-import { useState, useEffect, useRef } from 'react';
-
-const NAVBAR_HEIGHT = 60; // px
+import { useState, useEffect } from 'react';
 
 const Navbar = ({ theme, toggleTheme }) => {
   const [activeSection, setActiveSection] = useState('');
-  const [showNavbar, setShowNavbar] = useState(true);
-  const [isAtTop, setIsAtTop] = useState(true);
-  const [isHovered, setIsHovered] = useState(false);
-  const [isHotspotHovered, setIsHotspotHovered] = useState(false);
-  const hideTimeout = useRef(null);
+  const [showNavbar, setShowNavbar] = useState(false);
+  let hideTimeout;
 
-  // Track scroll position to determine if at top
   useEffect(() => {
     const handleScroll = () => {
-      const atTop = window.scrollY < 10;
-      setIsAtTop(atTop);
+      setShowNavbar(true);
+      clearTimeout(hideTimeout);
+      hideTimeout = setTimeout(() => setShowNavbar(false), 3000);
+    };
 
-      if (!atTop) {
+    const handleMouseMove = (e) => {
+      if (e.clientY < 100) {
         setShowNavbar(true);
-        if (hideTimeout.current) clearTimeout(hideTimeout.current);
-        hideTimeout.current = setTimeout(() => {
-          if (!isHovered && !isHotspotHovered) setShowNavbar(false);
-        }, 2000);
+        clearTimeout(hideTimeout);
       } else {
-        setShowNavbar(true);
-        if (hideTimeout.current) clearTimeout(hideTimeout.current);
+        hideTimeout = setTimeout(() => setShowNavbar(false), 2000);
       }
     };
 
     window.addEventListener('scroll', handleScroll);
+    window.addEventListener('mousemove', handleMouseMove);
+
     return () => {
       window.removeEventListener('scroll', handleScroll);
-      if (hideTimeout.current) clearTimeout(hideTimeout.current);
+      window.removeEventListener('mousemove', handleMouseMove);
+      clearTimeout(hideTimeout);
     };
-  }, [isHovered, isHotspotHovered]);
+  }, []);
 
+  // Set active section on scroll
   useEffect(() => {
     const handleSectionScroll = () => {
       const sections = ['home', 'about', 'techstack', 'projects', 'contact', 'resume', 'contact-info'];
@@ -61,65 +58,18 @@ const Navbar = ({ theme, toggleTheme }) => {
     return () => window.removeEventListener('scroll', handleSectionScroll);
   }, []);
 
-  // Handle navbar hover state
-  const handleMouseEnter = () => {
-    setIsHovered(true);
-    setShowNavbar(true);
-    if (hideTimeout.current) clearTimeout(hideTimeout.current);
-  };
-
-  const handleMouseLeave = () => {
-    setIsHovered(false);
-    if (!isAtTop && !isHotspotHovered) {
-      hideTimeout.current = setTimeout(() => {
-        setShowNavbar(false);
-      }, 2000);
-    }
-  };
-
-  // Handle hotspot hover state
-  const handleHotspotEnter = () => {
-    setIsHotspotHovered(true);
-    setShowNavbar(true);
-    if (hideTimeout.current) clearTimeout(hideTimeout.current);
-  };
-
-  const handleHotspotLeave = () => {
-    setIsHotspotHovered(false);
-    if (!isAtTop && !isHovered) {
-      hideTimeout.current = setTimeout(() => {
-        setShowNavbar(false);
-      }, 2000);
-    }
-  };
-
-  // Theme classes
   const navBg = theme === 'dark' ? 'bg-gray-500/30' : 'bg-gray-700/80';
   const iconColor = theme === 'dark' ? 'text-white/50' : 'text-gray-300';
-  const iconHover = theme === 'dark' ? 'hover:text-gray-300' : 'hover:text-gray-700';
   const sideNavBg = theme === 'dark' ? 'bg-black/30' : 'bg-gray-700/80';
+  const iconHover = theme === 'dark' ? 'hover:text-gray-300' : 'hover:text-gray-700';
 
   return (
     <>
-
-      <div
-        className="fixed top-4 left-0 w-full z-40"
-        style={{
-          height: `${NAVBAR_HEIGHT}px`,
-          pointerEvents: showNavbar ? 'none' : 'auto',
-        }}
-        onMouseEnter={handleHotspotEnter}
-        onMouseLeave={handleHotspotLeave}
-      />
-
-
+      {/* TOP NAVBAR */}
       <nav
         className={`fixed top-4 left-0 w-full z-50 transition-opacity duration-500 ${
           showNavbar ? 'opacity-100' : 'opacity-0 pointer-events-none'
         }`}
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
-        style={{ pointerEvents: showNavbar ? 'auto' : 'none' }}
       >
         <div className="container mx-auto">
           <div className={`w-full ${navBg} h-[60px] backdrop-blur-3xl rounded-full max-w-[700px] mx-auto px-5 flex justify-between text-2xl ${iconColor}`}>
@@ -132,6 +82,7 @@ const Navbar = ({ theme, toggleTheme }) => {
             >
               <BiHomeAlt />
             </Link>
+
             <a
               href="https://www.linkedin.com/in/dongha-kimm/"
               target="_blank"
@@ -140,6 +91,7 @@ const Navbar = ({ theme, toggleTheme }) => {
             >
               <FaLinkedin />
             </a>
+
             <a
               href="https://github.com/donghaxkim"
               target="_blank"
@@ -148,6 +100,7 @@ const Navbar = ({ theme, toggleTheme }) => {
             >
               <FaGithub />
             </a>
+
             <a
               href="/resume.pdf"
               target="_blank"
@@ -156,6 +109,7 @@ const Navbar = ({ theme, toggleTheme }) => {
             >
               <FaFileAlt />
             </a>
+
             <div
               className={`cursor-pointer w-[60px] h-[60px] flex items-center justify-center ${iconHover}`}
               onClick={toggleTheme}
@@ -166,7 +120,7 @@ const Navbar = ({ theme, toggleTheme }) => {
         </div>
       </nav>
 
-
+      {/* SIDE NAVBAR */}
       <nav className="fixed top-[40%] transform -translate-y-1 right-3 z-50">
         <div className="container mx-auto">
           <div className={`${sideNavBg} w-[40px] py-4 backdrop-blur-xl rounded-full flex flex-col items-center justify-center space-y-6 z-50`}>
